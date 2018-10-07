@@ -1,0 +1,220 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "PingFangSC-Regular", "微软雅黑", "Microsoft YaHei", "Helvetica Neue", "Roboto", "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+img {
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #1b82d7;
+}
+
+body,
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 1em;
+  font-weight: 400;
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: #404c51;
+  -webkit-font-smoothing: antialiased;
+  min-width: 900px;
+}
+
+body {
+  height: 100%;
+}
+
+.content-section {
+  display: block;
+  border-bottom: 1px solid #dde3e6;
+  padding: 30px;
+  overflow: hidden;
+  background-color: #f5f7f8;
+}
+
+.content-section.introduction {
+  background-image: linear-gradient(270deg, rgb(43, 192, 236), rgb(27, 129, 215));
+  color: #fff;
+}
+
+:first-of-type.content-section>div>span {
+  line-height: 1.5em;
+}
+
+.feature-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.implementation {
+  background-color: #fff;
+  overflow: visible;
+}
+
+.documentation p {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 10px 0;
+  opacity: 0.9;
+}
+
+.documentation h3,
+.documentation h4 {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  font-weight: 400;
+}
+
+.documentation h3 {
+  font-size: 24px;
+}
+
+.ui-datatable-resizable,
+.ui-table-resizable {
+  overflow: visible;
+}
+
+.buttons * {
+  margin-right: 0.5em;
+}
+
+div.dialog div.buttons {
+  text-align: right;
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+}
+
+.atb table,
+.atb table {
+  width: auto;
+}
+
+.atb th,
+.atb td {
+  white-space: nowrap;
+  word-break: keep-all;
+  width: auto;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.t-right {
+  text-align: right;
+}
+
+.w4 {
+  width: 4em;
+}
+
+.w6 {
+  width: 8em;
+}
+
+.w8 {
+  width: 8em;
+}
+
+.w10 {
+  width: 10em;
+}
+
+.w16 {
+  width: 16em;
+}
+
+.mw4 {
+  min-width: 4em;
+}
+
+.mw6 {
+  min-width: 8em;
+}
+
+.mw8 {
+  min-width: 8em;
+}
+
+.mw10 {
+  min-width: 10em;
+}
+
+.mw16 {
+  min-width: 50em;
+  text-overflow: ellipsis;
+}
+
+.th-mid-width{
+  width:150px;
+}
+
+.atb table,
+.atb table {
+  width: auto;
+}
+
+.atb tr{
+  height:100px;
+}
+
+.p-l-img img{
+  width:50px;
+}
+
+.p-l-img .ui-shadow img , .p-l-img .ui-lightbox-caption-text{
+  width:330px;
+} 
+.ui-lightbox .ui-lightbox-caption .ui-lightbox-caption-text{
+  width:295px !important;
+}
+
+.atb th,
+.atb td {
+  white-space: nowrap;
+  word-break: keep-all;
+  width: auto;
+}
+
+.t-center {
+  text-align: center;
+}
+
+.t-right {
+  text-align: right;
+}
+@media screen and (max-height:650px) {
+  body,
+  html {
+    font-size: 0.875em;
+  }
+  .content-section {
+    display: block;
+    padding: 15px;
+  }
+  .feature-title {
+    font-size: 25px;
+    margin-bottom: 15px;
+  }
+  .documentation p {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .documentation h3,
+  .documentation h4 {
+    margin-top: 20px;
+  }
+  .documentation h3 {
+    font-size: 22px;
+  }
+}

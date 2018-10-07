@@ -1,0 +1,48 @@
+<div class='content-section implementation' *ngIf='pageModel'>
+  <p-header>
+    <div class='buttons'>
+      <button type="button" pButton sl-permit='新增' icon="fa fa-plus" (click)="add()" label="新增"></button>
+      <button type="button" pButton sl-permit='查看' icon="fa fa-newspaper-o" (click)="detail()" label="查看"></button>
+      <button type="button" pButton sl-permit='修改' icon="fa fa-pencil-square-o" (click)="update()" label="修改"></button>
+      <button type="button" pButton sl-permit='删除' icon="fa fa-close" (click)="delete()" label="删除"></button>
+      <!-- <button type="button" pButton sl-permit='房屋管理-删除' icon="fa-close" (click)="delete()" label="删除"></button> -->
+      <!-- <input type="text" pInputText size="20" placeholder="查找" [(ngModel)]="keywords" (keydown)="search()" />
+      <div class='button select'>
+        <p-dropdown [style]="{'min-width':'20px'}"  [options]="years" [(ngModel)]="year" editable="editable" (keydown)="refreshYear($event)" (onChange)="refreshYear()"></p-dropdown>
+      </div> -->
+    </div>
+  </p-header>
+  <p-dataTable [value]="pageModel.content" [lazy]="true" [rows]="pageModel.size" [paginator]="true" [totalRecords]="pageModel.totalElements"
+    [rowsPerPageOptions]="[10,20,50,100]" (onLazyLoad)="loadLazy($event)" selectionMode="single" [(selection)]="selectedModel"
+    (onRowSelect)="onRowSelect($event)" [responsive]="true" resizableColumns="true">
+    <p-column field="id" header="序号" styleClass="col-button"></p-column>
+    <p-column field="typename" header="类别名"></p-column>
+    <p-column field="contorltype" header="类别编号"></p-column>
+  </p-dataTable>
+</div>
+
+<p-dialog styleClass='dialog' header="明细" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+  [width]="600">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="model">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        <label for="name">类别名称</label>
+      </div>
+      <div class="ui-grid-col-3">
+        <input pInputText [(ngModel)]="model.typename" [disabled]='isShow'  />
+      </div>
+      <div class='ui-grid-col-1'></div>
+      <div class="ui-grid-col-2">
+        <label for="name">类别编号</label>
+      </div>
+      <div class="ui-grid-col-4">
+        <!-- <input pInputText [(ngModel)]="model.contorltype" [disabled]='!isNew' placeholder="Number" /> -->
+        <input pInputText [(ngModel)]="model.contorltype" [disabled]='isShow' placeholder="Number" />
+      </div>
+    </div>
+  </div>
+  <div class="buttons ui-dialog-buttonpane ui-helper-clearfix">
+    <button type="button" pButton icon="fa fa-check" (click)="save()" label="保存" *ngIf="!isShow"></button>
+    <button type="button" pButton icon="fa fa-close" (click)="close()" label="关闭"></button>
+  </div>
+</p-dialog>

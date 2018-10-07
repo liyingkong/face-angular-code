@@ -1,0 +1,156 @@
+.layout-topbar {
+  background-color: #20272a;
+  display: block;
+  padding: 0;
+  height: 70px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 999999;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  min-width: 900px;
+}
+
+.layout-topbar .title {
+  margin-left: 45px;
+  color: white;
+  font-size: 25px;
+  width: 500px;
+  line-height: 70px;
+}
+
+.layout-sidebar {
+  position: fixed;
+  left: 0px;
+  top: 70px;
+  height: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+:host /deep/ .ui-menu.menu {
+  width: 100%;
+}
+
+:host /deep/ .ui-menu.menu .ui-menuitem {
+  height: 50px;
+  background-color: white;
+  border-top: 1px solid #e3e9ea;
+  box-sizing: border-box;
+  display: block;
+  cursor: pointer;
+}
+
+:host /deep/ .ui-menu.menu .ui-menuitem a {
+  color: #6d7879;
+  display: block;
+  height: 50px;
+  width: 100%;
+  padding: 15px 0 0 25px;
+}
+
+
+/* :host /deep/ .ui-menu.menu .ui-menuitem:hover{
+    background-color: #a6a6a6;
+}*/
+
+:host /deep/ .ui-menu.menu .ui-menuitem a:hover {
+  color: white;
+}
+
+:host /deep/ .ui-menu.menu .ui-menuitem a.ui-state-active {
+  color: #1b82d7;
+  background-color: white;
+}
+
+
+/* :host /deep/ .ui-menu.menu .ui-menuitem a.ui-state-active:hover{
+    color:#1b82d7;
+    background-color: white;
+} */
+
+.layout-content {
+  margin-left: 300px;
+  padding-top: 70px;
+  background-color: #fff;
+}
+
+.layout-footer {
+  font-size: 14px;
+  color: #84939f;
+}
+
+.top-menu {
+  float: right;
+  margin: 0 60px 0 0;
+  padding: 0;
+  display: flex;
+  color: white;
+}
+
+:host /deep/ .top-menu .ui-widget.ui-button {
+  background-color: inherit;
+  border: none;
+  /* transition: color .2s; */
+  transition: background .3s;
+  text-align: center;
+  /* height:20px;
+    margin-top:25px; */
+}
+
+:host /deep/ .top-menu .ui-widget.ui-button:hover {
+  background-color: #4a4f52;
+  /* color:#2399e5; */
+}
+
+:host /deep/ .top-menu span.ui-button-text {
+  padding-top: 0;
+  line-height: 65px;
+  border: none;
+}
+
+:host /deep/ .ui-growl {
+  padding-top: 60px;
+}
+
+@media screen and (max-height:650px) {
+  .layout-topbar {
+    height: 50px;
+  }
+  .layout-topbar .title {
+    font-size: 18px;
+    width: 450px;
+    line-height: 50px;
+  }
+  .layout-sidebar {
+    top: 50px;
+    width: 200px;
+  }
+   :host /deep/ .ui-menu.menu .ui-menuitem {
+    height: 40px;
+  }
+   :host /deep/ .ui-menu.menu .ui-menuitem a {
+    height: 40px;
+    padding: 10px 0 0 20px;
+  }
+  .layout-content {
+    margin-left: 200px;
+    padding-top: 50px;
+  }
+  .layout-footer {
+    font-size: 12px;
+  }
+  .top-menu {
+    margin: 0 50px 0 0;
+  }
+   :host /deep/ .top-menu span.ui-button-text {
+    line-height: 45px;
+  }
+   :host /deep/ .ui-growl {
+    padding-top: 50px;
+  }
+}

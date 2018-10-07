@@ -1,0 +1,209 @@
+<div class='content-section implementation' *ngIf='pageModel'>
+  <p-header>
+    <div class='buttons'>
+      <button type="button" pButton sl-permit='消息-新增' icon="fa fa-plus" (click)="add()" label="新增"></button>
+      <!-- <button type="button" pButton sl-permit='消息-查看' icon="fa fa-newspaper-o" (click)="detail()" label="查看"></button> -->
+      <button type="button" pButton sl-permit='消息-修改' icon="fa fa-pencil-square-o" (click)="update()" label="修改"></button>
+      <button type="button" pButton sl-permit='消息-删除' icon="fa fa-close" (click)="remove()" label="删除"></button>
+      <!-- <input type="text" pInputText size="20" placeholder="查找" [(ngModel)]="keywords" (keydown)="search()" />
+      <div class='button select'>
+        <p-dropdown [style]="{'min-width':'20px'}"  [options]="years" [(ngModel)]="year" editable="editable" (keydown)="refreshYear($event)" (onChange)="refreshYear()"></p-dropdown>
+      </div> -->
+    </div>
+    <div class='ui-grid-row' style="margin: 30px 0px;">
+      <div class="ui-grid-col-2">
+        <label>性别：</label>
+        <p-dropdown [style]="{'min-width':'20px'}" [options]="search_sexs" [(ngModel)]="search_sex" (onChange)="search()" editable="editable"></p-dropdown>
+      </div>
+      <div class="ui-grid-col-2">
+        <label>状态：</label>
+        <p-dropdown [style]="{'min-width':'20px'}" [options]="search_statuss" [(ngModel)]="search_status" (onChange)="search()" editable="editable"></p-dropdown>
+      </div>
+      <div class="ui-grid-col-2">
+        <label>人员类别：</label>
+        <p-dropdown [style]="{'min-width':'20px'}" [options]="search_contorltypes" [(ngModel)]="search_contorltype" (onChange)="search()"></p-dropdown>
+      </div>
+      
+      <div class="ui-grid-col-2">
+        <input type="text" style="width:300px;" pInputText size="20" placeholder="请输入要搜索的姓名、身份证号、业务ID" (keydown)="refresh()" [(ngModel)]="keywords" />
+      </div>
+      <!-- <div class="ui-grid-col-2">
+        <button type="button" pButton sl-permit='' icon="fa fa-search" (click)="search()" label="搜索"></button>
+      </div> -->
+    </div>
+  </p-header>
+  <p-table #dt styleClass='atb' styleClass='t-full' [value]="pageModel.content" [lazy]="true" [rows]="pageModel.size" [paginator]="true" [totalRecords]="pageModel.totalElements"
+  [rowsPerPageOptions]="[1,2,5,10]" (onLazyLoad)="loadLazy($event)"  [(selection)]="selecteds"
+  dataKey="id" (onRowSelect)="onRowSelect($event)" [responsive]="true" [resizableColumns]="true"  columnResizeMode='expand'>
+    <ng-template pTemplate='header'>
+      <tr>
+        <th class="th-mid-width">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th pResizableColumn class="th-mid-width">序号</th>
+        <th pResizableColumn class="th-mid-width">姓名</th>
+        <th pResizableColumn class="th-mid-width">性别</th>
+        <th pResizableColumn class="">身份证号</th>
+        <th pResizableColumn class="">业务ID</th>
+        <th pResizableColumn class="th-mid-width">状态</th>
+        <th pResizableColumn class="th-mid-width">人员类别</th>
+        <th pResizableColumn class="">创建时间</th>
+        <th pResizableColumn class="">图片</th>
+        <th pResizableColumn class="">图片名</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate='body' let-model>
+      <tr [pSelectableRow]="model" style="height:70px;">
+        <td style="text-align:center;">
+            <p-tableCheckbox [value]="model"></p-tableCheckbox>
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">序号</div>
+          {{model.id}}
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">姓名</div>
+          {{model.name}}
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">性别</div>
+          {{model.sex?'男':'女'}}
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">身份证号</div>
+          {{model.cardnumber}}
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">业务ID</div>
+          {{model.businessid}}
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">状态</div>
+          {{model.status?'生效':'不生效'}}
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">人员类别</div>
+          {{model.contorltype_name}}
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">创建时间</div>
+          {{model.createtime|date:'yyyy-MM-dd HH:mm:ss'}}
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">图片</div>
+          <!-- <img src="{{model.picurl}}" style="width:50px;" (mouseenter)="op2.show($event)" />
+          <p-overlayPanel #op1>
+              <img src="{{model.picurl}}" alt="Galleria 1"/>
+          </p-overlayPanel> -->
+          <p-lightbox [images]="model.images" class="p-l-img" effectDuration="50ms"></p-lightbox>
+        </td>
+        <td class="ui-resizable-column t-center mw16">
+          <div class="ui-column-title">图片</div>
+          <pre style="overflow:scroll;">{{model.picpath}}</pre>
+          <!-- <span>{{model.picpath}}</span> -->
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog styleClass='dialog' header="明细" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true"
+  [width]="800">
+  <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="model">
+    <div class='ui-grid-row'>
+      <div class="ui-grid-col-2">
+        <label for="name">姓名</label>
+      </div>
+      <div class="ui-grid-col-3">
+        <input pInputText [(ngModel)]="model.name" *ngIf='!isShow' />
+      </div>
+      <div class="ui-grid-col-1"></div>
+      <div class='ui-grid-col-2'>
+        <label for='name'>性别</label>
+      </div>
+      <div class='ui-grid-col-4'>
+        <p-selectButton [options]="sex" [(ngModel)]="model.sex" *ngIf='!isShow' ></p-selectButton>
+      </div>
+    </div>
+    <div class='ui-grid-row'>
+      <div class="ui-grid-col-2">
+        <label for="name">身份证号</label>
+      </div>
+      <div class="ui-grid-col-3">
+        <input pInputText [(ngModel)]="model.cardnumber" *ngIf='!isShow' />
+      </div>
+      <div class="ui-grid-col-1"></div>
+      <div class='ui-grid-col-2'>
+        <label for='name'>业务编号</label>
+      </div>
+      <div class='ui-grid-col-4'>
+        <input pInputText [(ngModel)]="model.businessid" *ngIf='!isShow' />
+      </div>
+    </div>
+    <div class='ui-grid-row'>
+      <div class="ui-grid-col-2">
+        <label for="name">状态</label>
+      </div>
+      <div class="ui-grid-col-3">
+        <p-selectButton [options]="yesno" [(ngModel)]="model.status" *ngIf='!isShow' ></p-selectButton>
+      </div>
+      <div class="ui-grid-col-1"></div>
+      <div class='ui-grid-col-2'>
+        <label for='name'>人员类别</label>
+      </div>
+      <div class='ui-grid-col-4'>
+        <p-dropdown [style]="{'min-width':'20px'}" [options]='select_contorltypes' [(ngModel)]='model.contorltype' *ngIf='!isShow'></p-dropdown>
+        <!-- <p-selectButton [options]="search_contorltypes" [(ngModel)]="model.contorltype" *ngIf='!isShow' ></p-selectButton> -->
+        <!-- <input pInputText [(ngModel)]="model.contorltype" *ngIf='!isShow' /> -->
+      </div>
+    </div>
+    <!-- <div class='ui-grid-row'>
+      <div class="ui-grid-col-2">
+        <label for="name">图片</label>
+      </div>
+      <div class="ui-grid-col-4">
+        <p-fileUpload mode="basic"  accept="image/*" maxFileSize="1000000" (onSelect)="onUpload($event)" >
+        </p-fileUpload>
+      </div>
+    </div> -->
+    <div class='ui-grid-row'>
+      <div class="ui-grid-col-2">
+        <label for="name">图片</label>
+      </div>
+      <div class="ui-grid-col-10" *ngIf='isNew'>
+        <input type="file" class="form-control" accept="image/*" (change)="changeListener($event)" >
+      </div>
+      <div class="ui-grid-col-10" *ngIf='!isNew'>
+        <img *ngIf="!isNew" [src]="model.picurl" style="height:150px;"/>
+      </div>
+      
+    </div>
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+      </div>
+      <div class="ui-grid-col-10">
+        <img *ngIf="base64Image && isNew" [src]="domSanitizer.bypassSecurityTrustUrl(base64Image)" style="height:150px;"/>
+      </div>
+    </div>
+    <!-- <div class="ui-grid-row">
+      <div class="ui-grid-col-2">
+        </div>
+      <div class="ui-grid-col-10">
+          <span *ngIf="uploadedFiles.name">{{uploadedFiles.name}} - {{uploadedFiles.size}} bytes</span>
+      </div>
+    </div> -->
+    <div class='ui-grid-row'>
+      <div class="ui-grid-col-2">
+        <label for="name">备注</label>
+      </div>
+      <div class="ui-grid-col-4">
+        <input pInputText [(ngModel)]="model.remark" *ngIf='!isShow' />
+        <!-- <span *ngIf='!isNew'>{{model.remark}}</span> -->
+      </div>
+    </div>
+  </div>
+  <div class="buttons ui-dialog-buttonpane ui-helper-clearfix">
+    <button type="button" pButton icon="fa fa-check" (click)="save()" label="保存" *ngIf="!isShow"></button>
+    <button type="button" pButton icon="fa fa-close" (click)="close()" label="关闭"></button>
+  </div>
+</p-dialog>

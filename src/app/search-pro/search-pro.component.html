@@ -1,0 +1,117 @@
+<div class='content-section implementation'>
+  <!-- <p-header>
+    <div class='buttons'>
+      <button type="button" pButton sl-permit='新增' icon="fa fa-plus" (click)="add()" label="新增"></button>
+      <button type="button" pButton sl-permit='查看' icon="fa fa-newspaper-o" (click)="detail()" label="查看"></button>
+      <button type="button" pButton sl-permit='修改' icon="fa fa-pencil-square-o" (click)="update()" label="修改"></button>
+      <button type="button" pButton sl-permit='删除' icon="fa fa-close" (click)="delete()" label="删除"></button>
+    </div>
+  </p-header> -->
+  <div class="ui-grid ui-grid-responsive ui-fluid img-div">
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-3">
+        <label for="name">图片上传</label>
+        <div class='ui-grid-row'>
+          <div class="ui-grid-col-2 ui-g-nopad">
+            <label for="name">图片</label>
+          </div>
+          <div class="ui-grid-col-10">
+            <input type="file" class="form-control" accept="image/*" (change)="changeListener($event)">
+            <!-- accept：application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+            text/plain, application/pdf,  -->
+          </div>
+        </div>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-10 ui-img">
+            <!-- <img *ngIf="base64Image" [src]="domSanitizer.bypassSecurityTrustUrl(base64Image)" style="height:150px;"/> -->
+            <img *ngIf="base64Image" [src]="domSanitizer.bypassSecurityTrustUrl(base64Image)" style="max-width:100%;max-height:300px;"/>
+          </div>
+        </div>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-2">
+            <button type="button" pButton sl-permit='搜索' icon="fa fa-close" (click)="refresh()" label="搜索" [disabled]="!base64Image"></button>
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-col-8">
+        <div for="name" class="search-header">搜索结果</div>
+        <!-- <p-table #dt styleClass='atb' styleClass='t-full' [value]="pageModel.content" [lazy]="true" [rows]="pageModel.size" [paginator]="true" [totalRecords]="pageModel.totalElements"
+        [rowsPerPageOptions]="[1,2,5,10]" (onLazyLoad)="loadLazy($event)"  [(selection)]="selecteds"
+        dataKey="id" (onRowSelect)="onRowSelect($event)" [responsive]="true" [resizableColumns]="true"  columnResizeMode='expand'> -->
+        <p-table #dt styleClass='atb' styleClass='t-full search-t' [value]="pageModel" [(selection)]="selecteds"
+        dataKey="id" (onRowSelect)="onRowSelect($event)" [responsive]="true"  columnResizeMode='expand'>
+          <ng-template pTemplate='header'>
+            <tr>
+              <th class="th-mid-width">
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th pResizableColumn >序号</th>
+              <th pResizableColumn >姓名</th>
+              <th pResizableColumn >性别</th>
+              <th pResizableColumn class="">身份证号</th>
+              <th pResizableColumn class="">业务ID</th>
+              <th pResizableColumn >状态</th>
+              <th pResizableColumn >人员类别</th>
+              <!-- <th pResizableColumn class="">创建时间</th> -->
+              <th pResizableColumn class="">图片</th>
+              <!-- <th pResizableColumn class="">图片名</th> -->
+              <th pResizableColumn class="font-strong-style">相似度</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate='body' let-model>
+            <tr [pSelectableRow]="model" style="height:70px;">
+              <td style="text-align:center;">
+                  <p-tableCheckbox [value]="model"></p-tableCheckbox>
+              </td>
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">序号</div>
+                {{model.id}}
+              </td>
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">姓名</div>
+                {{model.name}}
+              </td>
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">性别</div>
+                {{model.sex?'男':'女'}}
+              </td>
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">身份证号</div>
+                {{model.cardnumber}}
+              </td>
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">业务ID</div>
+                {{model.businessid}}
+              </td>
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">状态</div>
+                {{model.status?'生效':'不生效'}}
+              </td>
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">人员类别</div>
+                {{model.contorltype_name}}
+              </td>
+              <!-- <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">创建时间</div>
+                {{model.createtime|date:'yyyy-MM-dd HH:mm:ss'}}
+              </td> -->
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">图片</div>
+                <p-lightbox [images]="model.images" class="p-l-img" effectDuration="50ms"></p-lightbox>
+              </td>
+              <!-- <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">图片名</div>
+                <pre style="overflow:scroll;">{{model.picpath}}</pre>
+              </td> -->
+              <td class="ui-resizable-column t-center mw16">
+                <div class="ui-column-title">相似度</div>
+                <span class="font-strong-style">{{model.score}}</span>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        
+      </div>
+    </div>
+  </div>
+</div>
